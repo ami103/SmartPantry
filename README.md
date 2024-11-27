@@ -1,5 +1,5 @@
 # SmartPantry
-Trabajo Fin de Grado - Sistema de detección de alimentos e inventario para cocinas inteligentes
+## Trabajo Fin de Grado - Sistema de detección de alimentos e inventario para cocinas inteligentes
 
 **Smart Pantry** es una aplicación web diseñada para gestionar el inventario de alimentos en el hogar. Utiliza un modelo de reconocimiento de imágenes para identificar productos alimenticios, genera recetas basadas en los productos disponibles y crea menús semanales automáticamente.
 
@@ -26,10 +26,6 @@ Trabajo Fin de Grado - Sistema de detección de alimentos e inventario para coci
 1. Accede a la sección **Generar Receta**.
 2. Se generará una receta basada en los productos disponibles en la despensa.
 
-### Crear menú semanal
-1. Ve a la sección **Crear Menú**.
-2. Obtendrás un menú semanal con platos sugeridos para cada día.
-
 ---
 
 ## Personalización 🔧
@@ -41,3 +37,15 @@ Puedes reemplazar este archivo con un modelo YOLO personalizado.
 ### Configuración del multiplicador
 Los valores de *multiplicador* se configuran directamente en la base de datos.  
 Puedes modificar estos valores en el script `reset_db.py` o directamente en tu sistema de gestión de bases de datos.
+
+---
+
+## Capturas de pantalla 🖼️
+
+### Escaneo de productos:
+
+![Interfaz identificar](assets/interfaz__identificar.png)
+
+### Despensa:
+
+![Interfaz despensa](assets/interfaz__despensa.png)
