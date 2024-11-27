@@ -1,7 +1,7 @@
 # SmartPantry
 ## Trabajo Fin de Grado - Sistema de detección de alimentos e inventario para cocinas inteligentes
 
-**Smart Pantry** es una aplicación web diseñada para gestionar el inventario de alimentos en el hogar. Utiliza un modelo de reconocimiento de imágenes para identificar productos alimenticios, genera recetas basadas en los productos disponibles y crea menús semanales automáticamente.
+**Smart Pantry** es una aplicación web diseñada para gestionar el inventario de alimentos en el hogar. Utiliza un modelo de reconocimiento de imágenes para identificar productos alimenticios, genera recetas basadas en los productos disponibles.
 
 ## Características principales 🌟
 - **Identificación de productos:** Escanea productos mediante la cámara y los identifica utilizando un modelo YOLO.
