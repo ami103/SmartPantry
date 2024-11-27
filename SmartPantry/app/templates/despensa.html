@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Pantry</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/despensa.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Pantry</h1>
+        <div class="top-buttons">
+            <a href="{{ url_for('main.identificar') }}" class="add-button">Escanear Productos</a>
+            <a href="{{ url_for('main.generar_receta') }}" class="recipe-button">Generar Receta</a>
+        </div>        
+        <div class="pantry-list">
+            <h2>Productos Almacenados</h2>
+            <div class="product-grid">
+                {% for producto in productos %}
+                    <div class="product-card">
+                        <img src="{{ url_for('static', filename='images/' + (producto.imagen if producto.imagen else 'default.jpg')) }}" alt="{{ producto.nombre }}" class="product-image {% if producto.cantidad == 0 %}zero-quantity{% endif %}">
+                        <div class="product-name">{{ producto.nombre }}</div>
+                        <div class="product-qty">
+                            {% if producto.cantidad > 0 %}
+                                <strong>{{ producto.cantidad }}</strong>
+                            {% endif %}
+                        </div>                        
+                        <div class="qty-buttons">
+                            <form method="POST" action="{{ url_for('main.actualizar_cantidad', producto_id=producto.id, accion='incrementar') }}">
+                                <button type="submit" class="qty-button increment">+</button>
+                            </form>
+                            <form method="POST" action="{{ url_for('main.actualizar_cantidad', producto_id=producto.id, accion='decrementar') }}">
+                                <button type="submit" class="qty-button decrement">-</button>
+                            </form>
+                        </div>                        
+                    </div>
+                {% endfor %}
+            </div>            
+        </div>
+    </div>
+</body>
+</html>

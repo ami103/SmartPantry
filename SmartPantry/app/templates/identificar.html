@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Pantry</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/identificar.css') }}">
+    <script>
+        function getProducts() {
+            fetch('/get_products')
+                .then(response => response.json())
+                .then(data => {
+                    const productList = document.getElementById('productList');
+                    productList.innerHTML = '';
+                    for (const [producto, cantidad] of Object.entries(data)) {
+                        const li = document.createElement('li');
+                        li.classList.add('product-item');
+                        li.innerHTML = `
+                            <span class="product-name">${producto}</span>
+                            <span class="product-qty-text">(x${cantidad})</span>
+                            <div class="qty-buttons">
+                                <form method="POST" action="/actualizar_cantidad_identificados/${producto}/incrementar">
+                                    <button type="submit" class="qty-button increment">+</button>
+                                </form>
+                                <form method="POST" action="/actualizar_cantidad_identificados/${producto}/decrementar">
+                                    <button type="submit" class="qty-button decrement">-</button>
+                                </form>
+                                <form method="POST" action="/eliminar_producto_identificado/${producto}">
+                                    <button type="submit" class="qty-button delete">X</button>
+                                </form>
+                            </div>
+                        `;
+                        productList.appendChild(li);
+                    }
+                });
+        }
+        setInterval(getProducts, 2000);
+        
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Pantry</h1>
+        <div class="main-content">
+            <div class="image-identification box">
+                <h2>Captura de Video</h2>
+                <div>
+                    <img src="{{ url_for('main.video_feed') }}" style="width: 100%; height: auto;" alt="Video en vivo">
+                </div>
+            </div>
+            <div class="product-list box">
+                <h2>Productos Identificados</h2>
+                <ul id="productList">
+                </ul>
+            </div>
+        </div>
+        <div class="add-to-pantry-container">
+            <form method="POST" action="{{ url_for('main.add_to_despensa') }}">
+                <button type="submit" class="add-to-pantry-button">Añadir a la Despensa</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
